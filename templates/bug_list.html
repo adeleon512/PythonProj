@@ -1,0 +1,22 @@
+<!doctype html>
+<!-- import bug display widget from macro -->
+    {% import 'bug_display_widget.html' as bug_display_widget %}
+
+
+<html>
+<head>
+    <title>List of Bugs</title>
+</head>
+<body>
+<h1>List of Bugs</h1>
+<a href="/">Home</a><br>
+
+
+<ul><!-- unordered list -->
+    {% for bug in bugs %}
+        <li> {{ bug_display_widget.display_bug(bug) }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

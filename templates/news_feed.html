@@ -1,0 +1,25 @@
+<!doctype html>
+<!-- import bug comment display widget from macro -->                                                                                                                                       {% import 'bug_comment_display_widget.html' as bug_comment_display_widget %}
+
+<html>
+<head>
+    <title>News Feed</title>
+</head>
+<body>
+<h1>News Feed</h1>
+<a href="/">Home</a><br>
+<a href="/bug_list">Bug List</a><br>
+
+<p>
+The news feed below includes bugs that you created, are assigned to, or have subscribed to:
+</p>
+
+<ul><!-- unordered list -->
+    {% for news_comment in news_comments %}
+        <li> 							{{ bug_comment_display_widget.display_bug_comment(news_comment)	}}</li>
+    {% endfor %}
+</ul>
+
+
+</body>
+</html>

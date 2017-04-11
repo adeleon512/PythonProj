@@ -1,0 +1,20 @@
+ {%  macro display_bug(bug) %}
+ 
+<p>   
+    Title: <a href="/bug_details/{{ bug.bug_id }}">{{ bug.bug_title }}.</a><br>
+    Created by: {{ bug.creator }}       Assigned to: {{ bug.assignee }}<br>
+    Created: {{ bug.creation_date }}<br>
+    Details:<br>
+    {{ bug.bug_details }}<br>
+    Status: {{ bug.status }}            Closed date: {{ bug.close_date }}<br>
+    Priority: {{ bug.bug_priority }}<br>
+    Milestone: {{bug.milestone_title}}  Target date: {{bug.target_date }}<br>
+    
+    {% if bug.tags %}
+        Tagged with: {{ bug.tags | join(', ') }}
+    {% else %}
+        No Tags.
+    {% endif %}
+</p>
+
+{%  endmacro %}

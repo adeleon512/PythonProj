@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+  <title>Bug Tracker</title>
+</head>
+<body>
+<h1>Bug Tracker</h1>
+<h2>Edit Bug</h2>
+<form action="/edit_bug/{{ bug.bug_id }}" method="POST">
+  <input name="bug_id" type="hidden" value="{{ bug.bug_id }}">
+  <input name="bug_title" type="text" width="100" placeholder="Bug Title" value="{{ bug.bug_title }}"><br>
+  <textarea name="bug_details" rows="10" cols="50" placeholder="Bug Details">{{ bug.bug_details }}</textarea><br>
+
+<p>
+Select bug priority (current value = {{ bug.bug_priority }}):<br>
+  <select name="bug_priority">
+    <option value="{{ bug.bug_priority }}">{{ bug.bug_priority }}</option>
+
+    <option value="Low">Low</option>
+    <option value="Medium">Medium</option>
+    <option value="High">High</option>
+</select><br>
+</p>
+
+<p>
+Select Milestone (optional) (current value = {{ bug.milestone_title }}):<br>
+  <select name="milestone">
+    <option value="{{ bug.milestone_id }}">{{ bug.milestone_title }}</option>
+    
+    {% for milestone in milestones %}
+        <option value={{ milestone.milestone_id }}>                             		{{ milestone.milestone_title }}
+		{% if milestone.milestone_id != 1 %}
+           	(due:{{ milestone.target_date }})
+        	{% endif %}  </option>
+    {% endfor %}
+  </select><br>
+</p>
+
+<p>
+Select Developer (optional)(current value = 
+        {% for developer in developers %}
+            {% if developer.user_id == bug.assignee %}
+	           {{developer.display_name }}
+            {% endif %}
+        {% endfor %}):<br>
+  <select name="assignee">
+    <option value="{{bug.assignee}}">
+        {% for developer in developers %}
+            {% if developer.user_id == bug.assignee %}
+	           {{developer.display_name }}
+            {% endif %}
+        {% endfor %}</option>
+
+    {% for developer in developers %}
+        <option value={{ developer.user_id }}>                                                                                                                                                                   		{{ developer.display_name }}</option>
+    {% endfor %}
+  </select><br>
+</p>
+
+<p>
+Select bug status (current value = {{ bug.status }}):<br>
+  <select name="status">
+    <option value="{{ bug.status }}">{{ bug.status }}			</option>
+    <option value="Open">Open</option>
+    <option value="In_Development">In_Development</option>
+    <option value="Ready_for_Testing">Ready_for_Testing</option>
+    <option value="Testing">Testing</option>
+    <option value="Ready_for_Deployment">  		 		Ready_for_Deployment</option>
+    <option value="Rejected">Rejected</option>
+    <option value="Closed">Closed</option>
+</select><br>
+</p>
+
+  <input name="tags" type="text" width="100" placeholder="Tags (comma separated)"
+          value="{{ bug.tags | join(', ') }}"><br>
+
+
+  <input type="submit" name="action" value="Edit">
+</form>
+</body>
+</html>

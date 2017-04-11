@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <title>Bug Tracker</title>
+</head>
+<head>
+  <h1>Bug Tracker</h1>
+  <p>Welcome, {{ user.name }}</p>
+  <ul>
+    <li><a href="/news_feed">News Feed</a></li>
+    <li><a href="/bug_list">Bug List</a></li>
+    <li><a href="/create_bug">Create Bug</a></li>
+  </ul>
+
+
+  <h2>Bookmarks</h2>
+  {% for mark in bookmarks %}
+    <div>
+    <a href="{{ mark.url }}">{{ mark.title }}</a>
+    {% if mark.notes %}
+    <p>{{ mark.notes }}</p>
+    {% endif %}
+    {% if mark.tags %}
+      <p>Tagged with {{ mark.tags | join(', ') }}</p>
+    {% endif %}
+    <p><a href="/edit/{{ mark.id }}">Edit this bookmark</a></p>
+    </div>
+  {% endfor %}
+</head>
+</html>

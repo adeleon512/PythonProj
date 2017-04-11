@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <title>Bug Tracker</title>
+</head>
+<body>
+<h1>Bug Tracker</h1>
+<h2>Log In</h2>
+<p>You are not yet logged in to Bug Tracker.</p>
+<form action="/login" method="POST">
+  <input name="user" type="text" width="40" placeholder="User name"><br>
+  <input name="passwd" type="password" width="40" placeholder="Password"><br>
+  <input type="submit" name="action" value="Log in">
+  <input type="submit" name="action" value="Create account">
+<p> To create a new account all of the information below must be entered</p>
+
+  <input name="display_name" type="text" width="40" placeholder="Display Name"><br>
+  <input name="e_mail" type="text" width="40" placeholder="e-mail address"><br>
+
+
+<p>
+Select your user role:<br>
+  <select name="role">
+    <option value="User">User</option>
+    <option value="Developer">Developer</option>
+    <option value="Manager">Manager</option>
+  </select><br>
+</p>
+
+</form>
+</body>
+</html>

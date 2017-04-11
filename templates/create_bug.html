@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <title>Bug Tracker</title>
+</head>
+<body>
+<h1>Bug Tracker</h1>
+<h2>Create Bug</h2>
+<form action="/create_bug" method="POST">
+  <input name="bug_title" type="text" width="100" placeholder="Bug Title"><br>
+  <textarea name="bug_details" rows="10" cols="50" placeholder="Bug Details"></textarea><br>
+
+<p>
+Select bug priority:
+  <select name="bug_priority">
+    <option value="Low">Low</option>
+    <option value="Medium">Meduim</option>
+    <option value="High">High</option>
+  </select><br>
+</p>
+
+<p>
+Select Milestone (optional):
+  <select name="milestone">
+
+    {% for milestone in milestones %}
+        <option value={{ milestone.milestone_id }}>                             		{{ milestone.milestone_title }}
+		{% if milestone.milestone_id != 1 %}
+           	(due:{{ milestone.target_date }})
+        	{% endif %}  </option>
+    {% endfor %}
+  </select><br>
+</p>
+
+<p>
+Select Developer (optional):
+  <select name="assignee">
+
+    {% for developer in developers %}
+        <option value={{ developer.user_id }}>                                                                                                                                                                   		{{ developer.display_name }}</option>
+    {% endfor %}
+  </select><br>
+</p>
+
+  <input name="tags" type="text" width="100" placeholder="Tags (comma separated)"><br>
+
+<br>
+  <input type="submit" name="action" value="Create Bug">
+</form>
+</body>
+</html>
+
+
+

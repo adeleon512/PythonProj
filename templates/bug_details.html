@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- import bug display widget from macro -->
+    {% import 'bug_display_widget.html' as bug_display_widget %}                                                                                                                                       {% import 'bug_comment_display_widget.html' as bug_comment_display_widget %}
+
+
+<html>
+<head>
+  <title>Bug Tracker</title>
+</head>
+<body>
+<a href="/">Home</a><br>
+<a href="/bug_list">Bug List</a><br>
+<a href="/edit_bug/{{ bug.bug_id }}">Edit Bug</a><br>
+<a href="/add_comment/{{ bug.bug_id }}">Add Comment</a><br>
+<a href="/add_hours_worked/{{ bug.bug_id }}">Add Hours Worked</a><br>
+<a href="/add_subscription/{{ bug.bug_id }}">Subscribe to Bug</a><br>
+<h1>Bug Tracker</h1>
+<h2>Bug Details</h2>
+{{ bug_display_widget.display_bug(bug) }}
+<br>
+<p>
+*Note: Add fetchone check,or test to see length of cur
+       Some bugs may have no comments.
+</p>
+<ul><!-- unordered list -->
+    {% for bug_comment in bug_comments %}
+        <li> 				{{ bug_comment_display_widget.display_bug_comment(bug_comment) 	}}</li>
+    {% endfor %}
+</ul>
+
+
+
+
+</body>
+</html>
+
+
+
